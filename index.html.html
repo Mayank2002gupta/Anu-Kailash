@@ -1,0 +1,104 @@
+
+<style>
+    .password-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: none;
+    }
+    .password-input {
+      width: 95%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .password-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .password-button:hover {
+      background-color: #45a049;
+    }
+    #protected-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+  
+  <script type="text/javascript">
+    function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+  
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+  
+    function checkPassword() {
+      var password = document.getElementById("password").value;
+      if (password === "Money Lab") {
+        setCookie("passwordProtected", "true", 30); // Change 30 to the desired number of days
+        document.getElementById("protected-content").style.display = "block";
+        document.getElementById("password-form").style.display = "none";
+      } else {
+        alert("Incorrect password. Please try again.");
+      }
+    }
+  
+    function checkCookie() {
+      var isProtected = getCookie("passwordProtected");
+      if (isProtected) {
+        document.getElementById("protected-content").style.display = "block";
+      } else {
+        document.getElementById("password-form").style.display = "block";
+      }
+    }
+  
+    window.onload = function() {
+      checkCookie();
+    }
+  </script>
+  
+  <div class="password-container" id="password-form">
+    <h2>Protected Page</h2>
+    <input class="password-input" id="password" type="password" />
+    <button class="password-button" onclick="checkPassword()">Submit</button>
+  </div>
+  
+  <div id="protected-content">
+    <marquee behavior="slide" direction="left"><h1>Annu Weds Kailash</h1>
+        <h2>   </h2></marquee>
+        
+        <hr color="" >
+        <body bgcolor="#d5b07c">
+            <video width="750" height="" controls autoplay controlsList="nodownload" oncontextmenu="return false;">
+                <source src="Video.mp4" type="video/mp4" />
+            </video>
+            
+        </body>
+   
+  </div>
